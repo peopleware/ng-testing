@@ -1,0 +1,37 @@
+image: timbru31/node-chrome:12
+
+definitions:
+    steps:
+        - step: &test
+              name: Latest Node N
+              image: IMAGE
+              caches:
+                  - npm
+              script:
+                  - git submodule update --init
+                  - scripts/common/npm/testCi.sh
+    caches:
+        npm12: ~/.npm
+        npm14: ~/.npm
+        npm16: ~/.npm
+    branches:
+        - branch: &fullTestAndTag
+              - step:
+                    <<: *test
+                    name: Latest Node 14
+                    image: timbru31/node-chrome:14
+                    caches:
+                        - npm14
+              - step:
+                    name: Tag
+                    caches:
+                        - node
+                    script:
+                        - git submodule update --init
+                        - scripts/common/git/tagBitbucket.sh
+                        - scripts/common/git/pushToRemote.sh https://${GITHUB_CREDENTIALS}@github.com/peopleware/ng-testing.git
+
+pipelines:
+    branches:
+        main: *fullTestAndTag
+        feature/**: *fullTestAndTag
