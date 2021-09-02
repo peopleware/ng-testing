@@ -3,12 +3,12 @@
     "version": "0.0.1",
     "peerDependencies": {
         "@angular/common": "^12.1.0",
-        "@angular/core": "^12.1.0",
-        "@ppwcode/js-ts-oddsandends": "^1.4.2",
-        "jasmine": "^3.9.0",
-        "rxjs": "^7.3.0"
+        "@angular/core": "^12.1.0"
     },
     "dependencies": {
+        "@ppwcode/js-ts-oddsandends": "^1.4.2",
+        "jasmine-core": "~3.8.0",
+        "rxjs": "~6.6.0",
         "tslib": "^2.2.0"
     }
 }
