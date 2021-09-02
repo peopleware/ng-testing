@@ -1,11 +1,14 @@
 {
-  "name": "@ppwcode/ng-testing",
-  "version": "0.0.1",
-  "peerDependencies": {
-    "@angular/common": "^12.1.0",
-    "@angular/core": "^12.1.0"
-  },
-  "dependencies": {
-    "tslib": "^2.2.0"
-  }
+    "name": "@ppwcode/ng-testing",
+    "version": "0.0.1",
+    "peerDependencies": {
+        "@angular/common": "^12.1.0",
+        "@angular/core": "^12.1.0",
+        "@ppwcode/js-ts-oddsandends": "^1.4.2",
+        "jasmine": "^3.9.0",
+        "rxjs": "^7.3.0"
+    },
+    "dependencies": {
+        "tslib": "^2.2.0"
+    }
 }
