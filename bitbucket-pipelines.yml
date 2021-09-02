@@ -16,25 +16,12 @@ definitions:
         npm16: ~/.npm
     branches:
         - branch: &fullTestAndTag
-              - parallel:
-                    - step:
-                          <<: *test
-                          name: Latest Node 12
-                          image: timbru31/node-chrome:12
-                          caches:
-                              - npm12
-                    - step:
-                          <<: *test
-                          name: Latest Node 14
-                          image: timbru31/node-chrome:14
-                          caches:
-                              - npm14
-                    -   step:
-                            <<: *test
-                            name: Latest Node 16
-                            image: timbru31/node-chrome:16
-                            caches:
-                                - npm16
+              - step:
+                    <<: *test
+                    name: Latest Node 14
+                    image: timbru31/node-chrome:14
+                    caches:
+                        - npm14
               - step:
                     name: Tag
                     caches:
