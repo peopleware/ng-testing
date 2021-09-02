@@ -2,6 +2,7 @@
 
 import 'zone.js';
 import 'zone.js/testing';
+
 import { getTestBed } from '@angular/core/testing';
 import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
 
@@ -11,7 +12,7 @@ declare const require: {
         deep?: boolean,
         filter?: RegExp
     ): {
-        keys(): string[];
+        keys(): Array<string>;
         <T>(id: string): T;
     };
 };
