@@ -1,3 +1,9 @@
 {
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@ppwcode/ng-testing": ["dist/ppwcode/ng-testing/ppwcode-ng-testing", "dist/ppwcode/ng-testing"]
+        }
+    },
     "extends": "@angular-ru/typescript/tsconfig.json"
 }
