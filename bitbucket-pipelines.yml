@@ -1,0 +1,51 @@
+image: timbru31/node-chrome:12
+
+definitions:
+    steps:
+        - step: &test
+              name: Latest Node N
+              image: IMAGE
+              caches:
+                  - npm
+              script:
+                  - git submodule update --init
+                  - scripts/common/npm/testCi.sh
+    caches:
+        npm12: ~/.npm
+        npm14: ~/.npm
+        npm16: ~/.npm
+    branches:
+        - branch: &fullTestAndPush
+              - step:
+                    <<: *test
+                    name: Latest Node 14
+                    image: timbru31/node-chrome:14
+                    caches:
+                        - npm14
+              - step:
+                    name: Push to GitHub
+                    caches:
+                        - node
+                    script:
+                        - git submodule update --init
+                        - scripts/common/git/pushToRemote.sh https://${GITHUB_CREDENTIALS}@github.com/peopleware/ng-testing.git
+
+pipelines:
+    custom:
+        release:
+            - step:
+                  name: Build and release to NPM
+                  caches:
+                    - npm14
+                  script:
+                    - git submodule update --init
+                    - npm install
+                    - npm run build
+                    - pipe: atlassian/npm-publish:0.2.0
+                      variables:
+                          NPM_TOKEN: $NODE_AUTH_TOKEN
+                          FOLDER: 'dist/ppwcode/ng-testing'
+                          EXTRA_ARGS: '--access public'
+    branches:
+        main: *fullTestAndPush
+        feature/**: *fullTestAndPush
