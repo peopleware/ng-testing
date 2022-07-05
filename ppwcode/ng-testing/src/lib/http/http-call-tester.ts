@@ -1,8 +1,8 @@
-import { TestRequest } from '@angular/common/http/testing';
-import { notUndefined } from '@ppwcode/js-ts-oddsandends/lib/conditional-assert';
-import { noop, Observable } from 'rxjs';
+import { TestRequest } from '@angular/common/http/testing'
+import { notUndefined } from '@ppwcode/js-ts-oddsandends/lib/conditional-assert'
+import { noop, Observable } from 'rxjs'
 
-import { expectOneCallToUrl, ResponseOptions } from './http-client-testing-controller';
+import { expectOneCallToUrl, ResponseOptions } from './http-client-testing-controller'
 
 /**
  * This class can be used in testing to leverage the HttpTestingController for HTTP call testing.
@@ -27,22 +27,22 @@ import { expectOneCallToUrl, ResponseOptions } from './http-client-testing-contr
  */
 export class HttpCallTester<TRequestResponse, TStreamResult> {
     /** The stream that will be subscribed to in the verify function. */
-    private stream$?: Observable<TStreamResult>;
+    private stream$?: Observable<TStreamResult>
 
     /** The request response that should be returned when a request is received on the url. */
-    private mockedResponse?: TRequestResponse;
+    private mockedResponse?: TRequestResponse
 
     /** The options to further configure the response. */
-    private responseOptions?: ResponseOptions;
+    private responseOptions?: ResponseOptions
 
     /** Verification function executed during the verify function to allow developers to set expectations on the request. */
-    private expectRequestFn: (request: TestRequest) => void = noop;
+    private expectRequestFn: (request: TestRequest) => void = noop
 
     /** Verification function executed during the verify function to allow developers to set expectations on the result of the stream. */
-    private expectStreamResultFn: (result: TStreamResult) => void = noop;
+    private expectStreamResultFn: (result: TStreamResult) => void = noop
 
     /** Verification function executed during the verify function to allow developers to set expectations on the error that is thrown. */
-    private expectErrorFn: (error: unknown) => void = noop;
+    private expectErrorFn: (error: unknown) => void = noop
 
     constructor(private readonly url: string) {}
 
@@ -50,7 +50,7 @@ export class HttpCallTester<TRequestResponse, TStreamResult> {
     public static expectOneCallToUrl<TRequestResponse, TStreamResult>(
         url: string
     ): HttpCallTester<TRequestResponse, TStreamResult> {
-        return new HttpCallTester<TRequestResponse, TStreamResult>(url);
+        return new HttpCallTester<TRequestResponse, TStreamResult>(url)
     }
 
     /**
@@ -67,27 +67,27 @@ export class HttpCallTester<TRequestResponse, TStreamResult> {
      * @returns An HttpCallTester instance ready to verify the call.
      */
     public static expectOneBlobFromUrl<TStreamResult = Blob>(url: string): HttpCallTester<Blob, TStreamResult> {
-        const blob = new Blob();
+        const blob = new Blob()
 
         return new HttpCallTester<Blob, TStreamResult>(url).withResponse(blob).expectStreamResultTo((result) => {
-            expect(result).toBe(blob as unknown as TStreamResult);
-        });
+            expect(result).toBe(blob as unknown as TStreamResult)
+        })
     }
 
     /** Set the stream that will be subscribed to in the verify function. The stream should have an HTTP call as consequence. */
     public whenSubscribingTo(stream$: Observable<TStreamResult>): HttpCallTester<TRequestResponse, TStreamResult> {
-        this.stream$ = stream$;
+        this.stream$ = stream$
 
-        return this;
+        return this
     }
 
     /** Set a function that will be executed in the verify function to check whether the request matches certain conditions. */
     public expectRequestTo(
         expectRequestFn: (request: TestRequest) => void
     ): HttpCallTester<TRequestResponse, TStreamResult> {
-        this.expectRequestFn = expectRequestFn;
+        this.expectRequestFn = expectRequestFn
 
-        return this;
+        return this
     }
 
     /** Set the response that will be sent by the HttpTestingController when flushing the request. */
@@ -95,26 +95,26 @@ export class HttpCallTester<TRequestResponse, TStreamResult> {
         mockedResponse: TRequestResponse,
         responseOptions?: ResponseOptions
     ): HttpCallTester<TRequestResponse, TStreamResult> {
-        this.mockedResponse = mockedResponse;
-        this.responseOptions = responseOptions;
+        this.mockedResponse = mockedResponse
+        this.responseOptions = responseOptions
 
-        return this;
+        return this
     }
 
     /** Set a function that will be executed in the verify function to check whether the stream result matches certain conditions. */
     public expectStreamResultTo(
         expectStreamResultFn: (result: TStreamResult) => void
     ): HttpCallTester<TRequestResponse, TStreamResult> {
-        this.expectStreamResultFn = expectStreamResultFn;
+        this.expectStreamResultFn = expectStreamResultFn
 
-        return this;
+        return this
     }
 
     /** Set a function that will be executed in the verify function to check whether the error matches certain conditions. */
     public expectErrorTo(expectErrorFn: (error: unknown) => void): HttpCallTester<TRequestResponse, TStreamResult> {
-        this.expectErrorFn = expectErrorFn;
+        this.expectErrorFn = expectErrorFn
 
-        return this;
+        return this
     }
 
     /**
@@ -125,7 +125,7 @@ export class HttpCallTester<TRequestResponse, TStreamResult> {
      * @throws Throws a ConditionViolation if no mocked request response has been set.
      */
     public verify(): void {
-        this.verifySubscription(1, 0);
+        this.verifySubscription(1, 0)
     }
 
     /**
@@ -136,30 +136,30 @@ export class HttpCallTester<TRequestResponse, TStreamResult> {
      * @throws Throws a ConditionViolation if no mocked request response has been set.
      */
     public verifyFailure(): void {
-        this.verifySubscription(0, 1);
+        this.verifySubscription(0, 1)
     }
 
     private verifySubscription(expectedSubscriptionHits: number, expectedFailureHits: number): void {
-        const stream$ = notUndefined(this.stream$);
-        const response = notUndefined(this.mockedResponse);
+        const stream$ = notUndefined(this.stream$)
+        const response = notUndefined(this.mockedResponse)
 
-        let subscriptionHits = 0;
-        let failureHits = 0;
+        let subscriptionHits = 0
+        let failureHits = 0
         const subscription = stream$.subscribe(
             (result: TStreamResult) => {
-                subscriptionHits++;
-                this.expectStreamResultFn(result);
+                subscriptionHits++
+                this.expectStreamResultFn(result)
             },
             (error: unknown) => {
-                failureHits++;
-                this.expectErrorFn(error);
+                failureHits++
+                this.expectErrorFn(error)
             }
-        );
+        )
 
-        expectOneCallToUrl(this.url, response, this.expectRequestFn, this.responseOptions);
+        expectOneCallToUrl(this.url, response, this.expectRequestFn, this.responseOptions)
 
-        subscription.unsubscribe();
-        expect(subscriptionHits).toEqual(expectedSubscriptionHits);
-        expect(failureHits).toEqual(expectedFailureHits);
+        subscription.unsubscribe()
+        expect(subscriptionHits).toEqual(expectedSubscriptionHits)
+        expect(failureHits).toEqual(expectedFailureHits)
     }
 }

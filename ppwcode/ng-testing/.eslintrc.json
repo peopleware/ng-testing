@@ -1,51 +1,53 @@
 {
-    "extends": "@angular-ru/eslint-config-enterprise",
-    "ignorePatterns": ["!**/*"],
+    "root": true,
+    "ignorePatterns": ["projects/**/*", "schemata/**/*", "server/**/*", "api/**/*", "test/**/*"],
     "overrides": [
         {
             "files": ["*.ts"],
             "parserOptions": {
-                "project": ["ppwcode/ng-testing/tsconfig.lib.json"],
+                "project": ["tsconfig.json"],
                 "createDefaultProgram": true
             },
+            "extends": [
+                "plugin:@angular-eslint/recommended",
+                "plugin:@angular-eslint/template/process-inline-templates"
+            ],
             "rules": {
-                "@angular-eslint/directive-selector": [
-                    "error",
-                    {
-                        "type": "attribute",
-                        "prefix": "lib",
-                        "style": "camelCase"
-                    }
-                ],
                 "@angular-eslint/component-selector": [
                     "error",
                     {
-                        "type": "element",
-                        "prefix": "lib",
-                        "style": "kebab-case"
+                        "prefix": ["lib"],
+                        "style": "kebab-case",
+                        "type": "element"
                     }
                 ],
-                "comma-dangle": "off",
-                "prettier/prettier": "off",
-                "max-params-no-constructor/max-params-no-constructor": "off",
-                "@typescript-eslint/typedef": "off",
-                "@typescript-eslint/explicit-function-return-type": ["error", {
-                    "allowExpressions": true
-                }],
-                "@typescript-eslint/array-type": ["error", {
-                    "default": "generic"
-                }]
-            }
-        },
-        {
-            "files": ["*.spec.ts"],
-            "rules": {
-                "max-lines-per-function": "off"
+                "@angular-eslint/directive-selector": [
+                    "error",
+                    {
+                        "prefix": ["lib"],
+                        "style": "camelCase",
+                        "type": "attribute"
+                    }
+                ],
+                "@typescript-eslint/explicit-function-return-type": [
+                    "error",
+                    {
+                        "allowExpressions": true
+                    }
+                ],
+                "@typescript-eslint/array-type": [
+                    "error",
+                    {
+                        "default": "generic"
+                    }
+                ]
             }
         },
         {
             "files": ["*.html"],
+            "extends": ["plugin:@angular-eslint/template/recommended"],
             "rules": {}
         }
     ]
 }
+

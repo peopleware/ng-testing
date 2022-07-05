@@ -1,6 +1,6 @@
-import { HttpHeaders } from '@angular/common/http';
-import { HttpTestingController, TestRequest } from '@angular/common/http/testing';
-import { TestBed } from '@angular/core/testing';
+import { HttpHeaders } from '@angular/common/http'
+import { HttpTestingController, TestRequest } from '@angular/common/http/testing'
+import { TestBed } from '@angular/core/testing'
 
 /**
  * Function that leverages the HttpTestingController to verify that a url is called once. When the request
@@ -19,29 +19,29 @@ export const expectOneCallToUrl = <TResponse>(
     requestExpectations?: (request: TestRequest) => void,
     responseOptions?: ResponseOptions
 ): void => {
-    const httpTestingController = TestBed.inject(HttpTestingController);
+    const httpTestingController = TestBed.inject(HttpTestingController)
 
-    const request = httpTestingController.expectOne(url);
+    const request = httpTestingController.expectOne(url)
 
-    requestExpectations?.(request);
+    requestExpectations?.(request)
 
-    request.flush(mockedResponse, responseOptions);
-};
+    request.flush(mockedResponse, responseOptions)
+}
 
 /**
  * Verifies on the HttpTestingController that there are no outstanding requests left.
  */
 export const expectNoOutstandingRequests = (): void => {
-    const httpTestingController = TestBed.inject(HttpTestingController);
-    httpTestingController.verify();
-};
+    const httpTestingController = TestBed.inject(HttpTestingController)
+    httpTestingController.verify()
+}
 
 export interface ResponseOptions {
     headers?:
         | HttpHeaders
         | {
-              [name: string]: string | Array<string>;
-          };
-    status?: number;
-    statusText?: string;
+              [name: string]: string | Array<string>
+          }
+    status?: number
+    statusText?: string
 }
