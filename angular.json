@@ -50,7 +50,8 @@
     }
   },
   "cli": {
-    "defaultCollection": "@angular-eslint/schematics"
-  },
-  "defaultProject": "@ppwcode/ng-testing"
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
+  }
 }

@@ -46,7 +46,7 @@
         "useDefineForClassFields": false,
         "lib": ["esnext", "dom"],
         "module": "esnext",
-        "target": "es2015",
+        "target": "es2020",
         "types": [],
     },
     "angularCompilerOptions": {
