@@ -25,7 +25,18 @@ export const expectOneCallToUrl = <TResponse>(
 
     requestExpectations?.(request)
 
-    request.flush(mockedResponse, responseOptions)
+    request.flush(
+        mockedResponse as
+            | string
+            | number
+            | boolean
+            | Object
+            | ArrayBuffer
+            | Blob
+            | Array<string | number | boolean | Object | null>
+            | null,
+        responseOptions
+    )
 }
 
 /**
