@@ -1,9 +1,9 @@
 {
     "name": "@ppwcode/ng-testing",
-    "version": "3.0.0",
+    "version": "4.0.0",
     "peerDependencies": {
-        "@angular/common": "^14",
-        "@angular/core": "^14",
+        "@angular/common": "^15",
+        "@angular/core": "^15",
         "@ppwcode/js-ts-oddsandends": "^1.4.2",
         "jasmine-core": "^3.9.0",
         "rxjs": "^6.5.3 || ^7.3.0"
