@@ -2,6 +2,14 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.4.
 
+## Angular compatibility
+
+| ng-testing version | Angular version |
+|--------------------|-----------------|
+| 2.0.3              | 13              |
+| 3.x.x              | 14              |
+| 4.x.x              | 15              |
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change

@@ -2,6 +2,14 @@
 
 This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.0.
 
+## Angular compatibility
+
+| ng-testing version | Angular version |
+|--------------------|-----------------|
+| 2.0.3              | 13              |
+| 3.x.x              | 14              |
+| 4.x.x              | 15              |
+
 ## Code scaffolding
 
 Run `ng generate component component-name --project ng-testing` to generate a new component. You can also use
