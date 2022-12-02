@@ -5,7 +5,7 @@ This library was generated with [Angular CLI](https://github.com/angular/angular
 ## Angular compatibility
 
 | ng-testing version | Angular version |
-|--------------------|-----------------|
+| ------------------ | --------------- |
 | 2.0.3              | 13              |
 | 3.x.x              | 14              |
 | 4.x.x              | 15              |
