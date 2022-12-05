@@ -147,13 +147,13 @@ export class HttpCallTester<TRequestResponse, TStreamResult> {
         let failureHits = 0
         const subscription = stream$.subscribe(
             (result: TStreamResult) => {
-                subscriptionHits++
                 this.expectStreamResultFn(result)
+                subscriptionHits++
             },
             (error: unknown) => {
-                failureHits++
                 this.expectErrorFn(error)
-            }
+                failureHits++
+            },
         )
 
         expectOneCallToUrl(this.url, response, this.expectRequestFn, this.responseOptions)
