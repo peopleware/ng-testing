@@ -153,7 +153,7 @@ export class HttpCallTester<TRequestResponse, TStreamResult> {
             (error: unknown) => {
                 this.expectErrorFn(error)
                 failureHits++
-            },
+            }
         )
 
         expectOneCallToUrl(this.url, response, this.expectRequestFn, this.responseOptions)
