@@ -9,6 +9,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 | 2.0.3              | 13              |
 | 3.x.x              | 14              |
 | 4.x.x              | 15              |
+| 5.x.x              | 16              |
 
 ## Development server
 
