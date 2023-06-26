@@ -1,53 +1,71 @@
 {
-    "root": true,
-    "ignorePatterns": ["projects/**/*", "schemata/**/*", "server/**/*", "api/**/*", "test/**/*"],
-    "overrides": [
-        {
-            "files": ["*.ts"],
-            "parserOptions": {
-                "project": ["tsconfig.json"],
-                "createDefaultProgram": true
-            },
-            "extends": [
-                "plugin:@angular-eslint/recommended",
-                "plugin:@angular-eslint/template/process-inline-templates"
+  "root": true,
+  "ignorePatterns": [
+    "projects/**/*",
+    "schemata/**/*",
+    "server/**/*",
+    "api/**/*",
+    "test/**/*"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts"
+      ],
+      "parserOptions": {
+        "project": [
+          "tsconfig.json"
+        ],
+        "createDefaultProgram": true
+      },
+      "extends": [
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:@typescript-eslint/recommended"
+      ],
+      "rules": {
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "prefix": [
+              "lib"
             ],
-            "rules": {
-                "@angular-eslint/component-selector": [
-                    "error",
-                    {
-                        "prefix": ["lib"],
-                        "style": "kebab-case",
-                        "type": "element"
-                    }
-                ],
-                "@angular-eslint/directive-selector": [
-                    "error",
-                    {
-                        "prefix": ["lib"],
-                        "style": "camelCase",
-                        "type": "attribute"
-                    }
-                ],
-                "@typescript-eslint/explicit-function-return-type": [
-                    "error",
-                    {
-                        "allowExpressions": true
-                    }
-                ],
-                "@typescript-eslint/array-type": [
-                    "error",
-                    {
-                        "default": "generic"
-                    }
-                ]
-            }
-        },
-        {
-            "files": ["*.html"],
-            "extends": ["plugin:@angular-eslint/template/recommended"],
-            "rules": {}
-        }
-    ]
+            "style": "kebab-case",
+            "type": "element"
+          }
+        ],
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "prefix": [
+              "lib"
+            ],
+            "style": "camelCase",
+            "type": "attribute"
+          }
+        ],
+        "@typescript-eslint/explicit-function-return-type": [
+          "error",
+          {
+            "allowExpressions": true
+          }
+        ],
+        "@typescript-eslint/array-type": [
+          "error",
+          {
+            "default": "generic"
+          }
+        ]
+      }
+    },
+    {
+      "files": [
+        "*.html"
+      ],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended"
+      ],
+      "rules": {}
+    }
+  ]
 }
-

@@ -30,10 +30,10 @@ export const expectOneCallToUrl = <TResponse>(
             | string
             | number
             | boolean
-            | Object
+            | NonNullable<unknown>
             | ArrayBuffer
             | Blob
-            | Array<string | number | boolean | Object | null>
+            | Array<string | number | boolean | NonNullable<unknown> | null>
             | null,
         responseOptions
     )
