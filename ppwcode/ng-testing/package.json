@@ -1,6 +1,6 @@
 {
     "name": "@ppwcode/ng-testing",
-    "version": "5.0.1",
+    "version": "5.0.2",
     "peerDependencies": {
         "@angular/common": "^16",
         "@angular/core": "^16",
