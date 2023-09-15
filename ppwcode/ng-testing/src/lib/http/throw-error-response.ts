@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http'
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs'
 
 export const throwHttpErrorResponse = (statusCode: number): Observable<never> =>
     throwError(
