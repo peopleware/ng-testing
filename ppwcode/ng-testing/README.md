@@ -5,11 +5,12 @@ This library was generated with [Angular CLI](https://github.com/angular/angular
 ## Angular compatibility
 
 | ng-testing version | Angular version |
-| ------------------ | --------------- |
+|--------------------|-----------------|
 | 2.0.3              | 13              |
 | 3.x.x              | 14              |
 | 4.x.x              | 15              |
-| 5.x.x              | 16              |
+| 5.0.x              | 16              |
+| > 5.1.x            | 16 and 17       |
 
 ## Code scaffolding
 
